@@ -14,3 +14,13 @@ function criarNota() {
     postIt.appendChild(texto);
     notaContainer.appendChild(postIt);
 }
+
+function contar(){
+    var texto =  document.getElementById('txtnome');
+    var palavras = texto.value.split(" ");
+    var numpala = document.getElementById('numpala');
+    console.log(palavras.length);
+    numpala.innerHTML = palavras.length;
+    
+
+}
