@@ -7,15 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="nota">
-        <label>Escreva aqui: </label>
-        <input id="inputNota" type="text" onkeydown="contar()">
-        <br>
-        <p>número de palavras</p>
-        <p id="numpala"></p>
-        <br>
-        <button onclick="lerNota();">Enviar</button>
+
+    <div class="cabecalho">
+        <h1>Post-it</h1>
     </div>
+
+    <div class="entrada">
+        <label>Escreva aqui: </label>
+        <input id="inputNota" type="text">
+        <button onclick="criarNota();">Enviar</button>
+    </div>
+
+    <div id="notaContainerId"></div>
+
+    <div id="standBy"></div>
 
     <script src="script.js"></script>
 </body>
