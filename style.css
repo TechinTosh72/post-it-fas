@@ -3,9 +3,24 @@
     padding: 0;
 }
 
+
+.cabecalho{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 40px;
+}
+
 .entrada {
     text-align: center;
 }
+
+.entrada label{
+    margin: 30px 0;
+    letter-spacing: 4px;
+    font-size: 25px;
+}
+
+.entrada
 
 #notaContainerId {
     display: flex;
