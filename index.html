@@ -13,10 +13,12 @@
     </div>
 
     <div class="entrada">
-        <label>Escreva aqui: </label>
-        <input id="inputNota" type="text" onkeypress="contar()">
-        <p id="numpala"></p>
-        <button onclick="criarNota();">Enviar</button>
+        <form onsubmit="criarNota(event)">
+            <label>Escreva aqui: </label> <br>
+            <input id="inputNota" type="text" onclick="contar()">
+            <p id="numpala"></p>
+            <input type="submit" value="enviar">
+        </form>
     </div>
 
     <div id="notaContainerId"></div>
