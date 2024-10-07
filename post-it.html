@@ -3,17 +3,24 @@
     <head>
         <meta charset="utf-8"/>
         <title>Post-it</title>
+        <script src="postjava.js"></script>
+
     </head>
     <body>
         <h1>Post-it</h1>
         <label>digite aqui</label>
         <br>
-        <input id="txtnome" type="text"/>
+        <input id="txtnome" type="text" onkeyup="contar()"/>
         <br>
-        <button onclick="criar">criar</button>
+        <p>número de palavras: </p>
+        <br>
+        <button onclick="texto()">criar</button>
         <br>
         <br>
         <label id="repliquenome"></label>
+        
+        <div id="criapostit">
+
+        </div>
     </body>
-    <script src="postjava.js"></script>
 </html>
