@@ -3,7 +3,8 @@ function lerNota() {
     return entrada;
 }
 
-function criarNota() {
+function criarNota(event) {
+    event.preventDefault();
     const notaContainer = document.getElementById("notaContainerId");
 
     const postIt = document.createElement("div");
@@ -17,12 +18,11 @@ function criarNota() {
     notaContainer.appendChild(postIt);
 }
 
+
 function contar(){
-    var texto =  document.getElementById('txtnome');
+    var texto =  document.getElementById('inputNota');
     var palavras = texto.value.split(" ");
     var numpala = document.getElementById('numpala');
     console.log(palavras.length);
     numpala.innerHTML = palavras.length;
-    
-
 }
