@@ -8,6 +8,8 @@ function criarNota() {
 
     const postIt = document.createElement("div");
     postIt.className = "postItClass";
+    postIt.draggable = true;
+    postIt.style.cursor = "move";
     const texto = document.createElement("textarea");
     texto.placeholder = lerNota();
 
