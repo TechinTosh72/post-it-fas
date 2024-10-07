@@ -1,14 +1,16 @@
 function lerNota() {
     var entrada = document.getElementById("inputNota").value;
-    return entrada
+    return entrada;
 }
 
 function criarNota() {
-    const notaContainer = document.getElementsByClassName(notaContainer);
+    const notaContainer = document.getElementById("notaContainerId");
 
-    const titulo = document.createElement("h1");
-    const texto = document.createElement("p");
-    
-    notaContainer.appendChild(titulo);
-    notaContainer.appendChild(texto);
+    const postIt = document.createElement("div");
+    postIt.className = "postItClass";
+    const texto = document.createElement("textarea");
+    texto.placeholder = lerNota();
+
+    postIt.appendChild(texto);
+    notaContainer.appendChild(postIt);
 }
