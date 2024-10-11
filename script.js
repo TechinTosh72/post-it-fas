@@ -9,20 +9,71 @@ function criarNota(event) {
 
     const postIt = document.createElement("div");
     postIt.className = "postItClass";
-    postIt.draggable = true;
     postIt.style.cursor = "move";
+
     const texto = document.createElement("textarea");
-    texto.placeholder = lerNota();
+    texto.value = lerNota(); 
 
     postIt.appendChild(texto);
     notaContainer.appendChild(postIt);
-}
 
+    new Draggable(postIt);
+}
 
 function contar(){
     var texto =  document.getElementById('inputNota');
-    var palavras = texto.value.split(" ");
+    var palavras = texto.value.trim().split(/\s+/).filter(Boolean);
     var numpala = document.getElementById('numpala');
-    console.log(palavras.length);
+
     numpala.innerHTML = palavras.length;
 }
+
+var Draggable = function(elemento) {
+    var isso = this; 
+    this.elemento = elemento;
+    this.posX = 0;
+    this.posY = 0;
+    this.top = 0;
+    this.left = 0;
+
+    this.refMouseUp = function (event) {
+        isso.onMouseUp(event); 
+    }
+    
+    this.refMouseMove = function (event) {
+        isso.onMouseMove(event); 
+    }
+    
+    this.elemento.addEventListener("mousedown", function (event) {
+        isso.onMouseDown(event); 
+    });
+}
+
+Draggable.prototype.onMouseDown = function(event) {
+    this.posX = event.x;
+    this.posY = event.y;
+
+    this.elemento.classList.add("dragging");
+    window.addEventListener("mousemove", this.refMouseMove);
+    window.addEventListener("mouseup", this.refMouseUp);
+}
+
+Draggable.prototype.onMouseMove = function(event) {
+    var diffX = event.x - this.posX;
+    var diffY = event.y - this.posY;
+    this.elemento.style.top = (this.top + diffY) + "px";
+    this.elemento.style.left = (this.left + diffX) + "px";
+}
+
+Draggable.prototype.onMouseUp = function(event) {
+    this.top = parseInt(this.elemento.style.top.replace(/\D/g, '')) || 0;
+    this.left = parseInt(this.elemento.style.left.replace(/\D/g, '')) || 0;
+    this.elemento.classList.remove("dragging");
+    window.removeEventListener("mousemove", this.refMouseMove);
+    window.removeEventListener("mouseup", this.refMouseUp);
+}
+
+var draggables = document.querySelectorAll(".postItClass");
+[].forEach.call(draggables, function(draggable) {
+    new Draggable(draggable);
+});
