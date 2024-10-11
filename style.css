@@ -20,8 +20,6 @@
     font-size: 25px;
 }
 
-.entrada
-
 #notaContainerId {
     display: flex;
     width: 100%;
@@ -59,4 +57,3 @@
     box-shadow: 4px 4px 3px #000000;
     resize: none;
 }
-
