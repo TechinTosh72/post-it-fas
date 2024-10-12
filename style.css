@@ -58,10 +58,10 @@
 .postItClass textarea{
     width: 100%;
     height: 100%;
-    background-color: #f8f523;
     border-radius: 10px;
     box-shadow: 4px 4px 3px #000000;
     resize: none;
+    color: #ffffff;
 }
   
 .dragging {
