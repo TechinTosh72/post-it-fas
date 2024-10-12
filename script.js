@@ -13,6 +13,7 @@ function criarNota(event) {
 
     const texto = document.createElement("textarea");
     texto.value = lerNota(); 
+    texto.style.cursor = "move"
     texto.style.backgroundColor = "rgb(" + corAleatoria() + ")";
 
     postIt.appendChild(texto);
