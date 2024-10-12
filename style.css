@@ -47,12 +47,13 @@
     width: 150px;
     height: 150px;
     margin-top: 10px;
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 0px;
     transition: transform 0.3s linear z-index 0.3 linear;
     z-index: 0;
 }
+
 
 .postItClass textarea{
     width: 100%;
