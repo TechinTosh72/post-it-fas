@@ -13,6 +13,7 @@ function criarNota(event) {
 
     const texto = document.createElement("textarea");
     texto.value = lerNota(); 
+    texto.style.backgroundColor = "rgb(" + corAleatoria() + ")";
 
     postIt.appendChild(texto);
     notaContainer.appendChild(postIt);
@@ -75,3 +76,14 @@ var draggables = document.querySelectorAll(".postItClass");
 [].forEach.call(draggables, function(draggable) {
     new Draggable(draggable);
 });
+
+
+function corAleatoria() {
+    min = Math.ceil(1);
+    max = Math.floor(256);
+    r = (Math.floor(Math.random() * (max - min) + min));
+    g = (Math.floor(Math.random() * (max - min) + min));
+    b = (Math.floor(Math.random() * (max - min) + min));
+
+    return r+", "+g+", "+b;
+  }
