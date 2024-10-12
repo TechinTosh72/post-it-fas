@@ -24,7 +24,6 @@ function contar(){
     var texto =  document.getElementById('inputNota');
     var palavras = texto.value.trim().split(/\s+/).filter(Boolean);
     var numpala = document.getElementById('numpala');
-
     numpala.innerHTML = palavras.length;
 }
 
@@ -52,7 +51,6 @@ var Draggable = function(elemento) {
 Draggable.prototype.onMouseDown = function(event) {
     this.posX = event.x;
     this.posY = event.y;
-
     this.elemento.classList.add("dragging");
     window.addEventListener("mousemove", this.refMouseMove);
     window.addEventListener("mouseup", this.refMouseUp);
