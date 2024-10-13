@@ -1,41 +1,44 @@
+var numId = 0;
+var numCor = 0;
+
 function lerNota() {
     var entrada = document.getElementById("inputNota").value;
     return entrada;
 }
 
 function criarNota(event) {
+    numId += 1;
     event.preventDefault();
     const notaContainer = document.getElementById("notaContainerId");
 
     const postIt = document.createElement("div");
     postIt.className = "postItClass";
+    postIt.id = "postItId"+numId;
     postIt.style.cursor = "move";
 
     const texto = document.createElement("textarea");
     texto.value = lerNota(); 
     texto.style.cursor = "move"
-    texto.style.backgroundColor = "rgb(" + corAleatoria() + ")";
+    texto.style.backgroundColor = corPostIt();
+    
+    const botao = document.createElement("button");
+    botao.style.backgroundColor = corPostIt();
+    botao.innerHTML = "⎯";
+    numCor += 1;
 
+    postIt.appendChild(botao);
     postIt.appendChild(texto);
     notaContainer.appendChild(postIt);
 
     new Draggable(postIt);
 }
 
-// Aqui so colocar o nome do post-it para remover e mudar o nome da var.
 function removerNota() {
 
     var elemento = document.getElementById('')
     elemento.removeAttribute('') 
 
 }
-
-
-
-
-    
-
-
 
 function contar(){
     var texto =  document.getElementById('inputNota');
@@ -94,12 +97,18 @@ var draggables = document.querySelectorAll(".postItClass");
 });
 
 
-function corAleatoria() {
-    min = Math.ceil(1);
-    max = Math.floor(256);
-    r = (Math.floor(Math.random() * (max - min) + min));
-    g = (Math.floor(Math.random() * (max - min) + min));
-    b = (Math.floor(Math.random() * (max - min) + min));
+function corPostIt() {
+    var cor = [];
+    let rosa = "#FC4D91";
+    let laranja = "#E6682C";
+    let amarelo = "#FEC721";
+    let verde = "#CFED23";
+    let azul = "#33AED9";
+    let roxo = "#D782EC";
+    cor.push(rosa, laranja, amarelo, verde, azul, roxo);
+    if (numCor > 5) {
+        numCor = 0 ;
+    }
 
-    return r+", "+g+", "+b;
+    return cor[numCor];
   }
