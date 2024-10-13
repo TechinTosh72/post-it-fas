@@ -22,6 +22,21 @@ function criarNota(event) {
     new Draggable(postIt);
 }
 
+// Aqui so colocar o nome do post-it para remover e mudar o nome da var.
+function removerNota() {
+
+    var elemento = document.getElementById('')
+    elemento.removeAttribute('') 
+
+}
+
+
+
+
+    
+
+
+
 function contar(){
     var texto =  document.getElementById('inputNota');
     var palavras = texto.value.trim().split(/\s+/).filter(Boolean);
