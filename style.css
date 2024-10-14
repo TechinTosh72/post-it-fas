@@ -6,12 +6,13 @@
 
 .cabecalho{
     text-align: center;
-    margin-top: 50px;
     font-size: 40px;
+    height: 10vh;
 }
 
 .entrada {
     text-align: center;
+    height: 10vh;
 }
 
 .entrada label{
@@ -23,23 +24,26 @@
 #notaContainerId {
     display: flex;
     justify-content: center;
+    overflow: hidden;
     align-items: center;
     width: 100%;
-    height: 380px;
+    height: 70vh;
     flex-direction: row;
     gap: 20px;
     flex-wrap: wrap;
     position: relative;
-    margin-bottom: 150px;
     
 }
 
 #standBy {
-    height: 100px;
+    height: 10vh;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #d9d9d9;
     position: fixed;
     bottom: 0;
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
 
 }
 
@@ -47,11 +51,11 @@
     width: 150px;
     height: 150px;
     position: absolute;
+    user-select: none;
     top: 0;
     left: 0;
     transition: transform 0.3s linear z-index 0.3 linear;
     z-index: 0;
-    background-color: aqua;
 }
 
 .topoClass {
@@ -64,6 +68,23 @@
     height: 15px;
     align-items: end;
     border: 1px solid #000000;
+    position: relative;
+}
+
+.botaoMinimizarClass {
+    background-color: #0000FF;
+    
+}
+
+.botaoFecharClass {
+    background-color: #FF4500;
+}
+
+.topoClass p{
+    font-size: 12px;
+    text-align: end;
+    position: absolute;
+    right: 1px;
 }
 
 .postItClass textarea{
@@ -81,4 +102,24 @@
 .dragging {
     transform: scale(1.1);
     z-index: 999;
+}
+
+.minimizado {
+    min-width: 150px;
+    height: 30px;
+    position: relative;
+    transition: transform 0.3s linear z-index 0.3 linear;
+    z-index: 0;
+}
+
+.minimizado textarea{
+    display: none;
+}
+
+.minimizado textarea:focus {
+    display: none;
+}
+
+.minimizado .topoClass .botaoMinimizarClass {
+    display: none;
 }
