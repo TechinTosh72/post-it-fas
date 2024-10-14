@@ -16,20 +16,35 @@ function criarNota(event) {
     postIt.id = "postItId"+numId;
     postIt.style.cursor = "move";
 
+    const topo = document.createElement("div");
+    topo.className = "topoClass";
+
     const texto = document.createElement("textarea");
     texto.value = lerNota(); 
-    texto.style.cursor = "move"
+    texto.style.cursor = "move";
+    postIt.style.backgroundColor = corPostIt();
     texto.style.backgroundColor = corPostIt();
     
-    const botao = document.createElement("button");
-    botao.style.backgroundColor = corPostIt();
-    botao.innerHTML = "⎯";
-    numCor += 1;
+    const botaoMinimizar = document.createElement("button");
+    botaoMinimizar.className = "botaoMinimizarClass";
+    botaoMinimizar.style.backgroundColor = corPostIt();
+    const textoMinimizar = document.createTextNode("-");
+    botaoMinimizar.appendChild(textoMinimizar);
+    
 
-    postIt.appendChild(botao);
+    const botaoFechar = document.createElement("button");
+    botaoFechar.className = "botaoFecharClass";
+    botaoFechar.style.backgroundColor = corPostIt();
+    const textoFechar = document.createTextNode("X");
+    botaoFechar.appendChild(textoFechar);
+
+    topo.appendChild(botaoFechar);
+    topo.appendChild(botaoMinimizar);
+    postIt.appendChild(topo);
     postIt.appendChild(texto);
     notaContainer.appendChild(postIt);
 
+    numCor += 1;
     new Draggable(postIt);
 }
 
@@ -112,3 +127,8 @@ function corPostIt() {
 
     return cor[numCor];
   }
+
+
+function botaoPosIt(postItId){
+    console.log(postItId)
+}
