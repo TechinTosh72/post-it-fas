@@ -27,17 +27,23 @@ function criarNota(event) {
     
     const botaoMinimizar = document.createElement("button");
     botaoMinimizar.className = "botaoMinimizarClass";
-    botaoMinimizar.style.backgroundColor = corPostIt();
     const textoMinimizar = document.createTextNode("-");
-    botaoMinimizar.appendChild(textoMinimizar);
-    
+    botaoMinimizar.addEventListener("click", function() {
+        minimizar(botaoMinimizar);
+    });
 
+    
     const botaoFechar = document.createElement("button");
     botaoFechar.className = "botaoFecharClass";
-    botaoFechar.style.backgroundColor = corPostIt();
     const textoFechar = document.createTextNode("X");
-    botaoFechar.appendChild(textoFechar);
+    
+    const datahor = document.createElement("p")
+    datahor.id = "idDatahor"+numId;
+    datahor.innerHTML = data();
 
+    topo.appendChild(datahor);
+    botaoMinimizar.appendChild(textoMinimizar);
+    botaoFechar.appendChild(textoFechar);
     topo.appendChild(botaoFechar);
     topo.appendChild(botaoMinimizar);
     postIt.appendChild(topo);
@@ -46,7 +52,9 @@ function criarNota(event) {
 
     numCor += 1;
     new Draggable(postIt);
+    
 }
+
 
 function removerNota() {
 
@@ -75,7 +83,7 @@ var Draggable = function(elemento) {
     }
     
     this.refMouseMove = function (event) {
-        isso.onMouseMove(event); 
+        mousemoveI(event); 
     }
     
     this.elemento.addEventListener("mousedown", function (event) {
@@ -83,6 +91,12 @@ var Draggable = function(elemento) {
     });
 }
 
+function mousemoveI(event){
+    var diffX = event.x - this.posX;
+    var diffY = event.y - this.posY;
+    this.elemento.style.top = (this.top + diffY) + "px";
+    this.elemento.style.left = (this.left + diffX) + "px";
+}
 Draggable.prototype.onMouseDown = function(event) {
     this.posX = event.x;
     this.posY = event.y;
@@ -92,6 +106,10 @@ Draggable.prototype.onMouseDown = function(event) {
 }
 
 Draggable.prototype.onMouseMove = function(event) {
+    
+    //if(event.target.classList.contains('min-class')){
+    //    return ;
+   // }
     var diffX = event.x - this.posX;
     var diffY = event.y - this.posY;
     this.elemento.style.top = (this.top + diffY) + "px";
@@ -128,7 +146,34 @@ function corPostIt() {
     return cor[numCor];
   }
 
+function data() {
+    var dataIn = new Date();
+    var dia = dataIn.getDate();
+    var mes = dataIn.getMonth()+1;
+    var ano = dataIn.getFullYear();
+    var hora = dataIn.getHours();
+    var minuto = dataIn.getMinutes();
+    var segundo = dataIn.getSeconds();
+    var dataOut = (dia+"/"+mes+"/"+ano+" "+hora+":"+minuto+":"+segundo);
+    return dataOut
+}
 
-function botaoPosIt(postItId){
-    console.log(postItId)
+function minimizar(botao){
+
+    let top = botao.parentElement;
+    let post = top.parentElement;
+    post.style.position = "relative";
+    post.style.top = 0;
+    post.style.left = 0;
+    console.log("work")
+    post.className = "minimizado";
+
+    let notaSave = post;
+    let container = document.getElementById("notaContainerId");
+    container.removeChild(post);
+    let stand = document.getElementById("standBy");
+    stand.appendChild(notaSave);
+
+    console.log(notaSave);
+    notaSave.removeEventListener('mousemove',mousemoveI);
 }
