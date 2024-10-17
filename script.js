@@ -63,11 +63,21 @@ function removerNota() {
 
 }
 
+var textoAnterior;
 function contar(){
     var texto =  document.getElementById('inputNota');
     var palavras = texto.value.trim().split(/\s+/).filter(Boolean);
     var numpala = document.getElementById('numpala');
     numpala.innerHTML = palavras.length;
+ 
+    if (palavras.length > 10) {
+        alert('máximo 10 palavras')
+        document.getElementById('inputNota').value= textoAnterior;
+        numpala.innerHTML = '10';
+    }
+    else{
+        textoAnterior = texto.value;
+    }
 }
 
 var Draggable = function(elemento) {
