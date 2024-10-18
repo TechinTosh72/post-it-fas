@@ -179,4 +179,20 @@ function minimizar(botao) {
     let stand = document.getElementById("standBy");
     stand.appendChild(post);
 
+    let botaoRestaurar = document.createElement("button");
+    botaoRestaurar.className = "botaoRestaurar"
+    botaoRestaurar.innerHTML = "Restaurar";
+    botaoRestaurar.onclick = function() {
+        post.classList.remove("minimizado");
+        stand.removeChild(post);
+        container.appendChild(post);
+        post.removeChild(botaoRestaurar);
+    };
+
+    post.appendChild(botaoRestaurar);
+}
+
+function restaurar(botao) {
+  
+    
 }
