@@ -192,7 +192,3 @@ function minimizar(botao) {
     post.appendChild(botaoRestaurar);
 }
 
-function restaurar(botao) {
-  
-    
-}
