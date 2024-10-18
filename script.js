@@ -81,7 +81,7 @@ function contar(){
 }
 
 var Draggable = function(elemento) {
-    var isso = this; 
+    var isso = this;
     this.elemento = elemento;
     this.posX = 0;
     this.posY = 0;
@@ -89,41 +89,35 @@ var Draggable = function(elemento) {
     this.left = 0;
 
     this.refMouseUp = function (event) {
-        isso.onMouseUp(event); 
+        isso.onMouseUp(event);
     }
-    
+
     this.refMouseMove = function (event) {
-        mousemoveI(event); 
+        isso.mousemoveI(event);
     }
-    
+
     this.elemento.addEventListener("mousedown", function (event) {
-        isso.onMouseDown(event); 
+        isso.onMouseDown(event);
     });
+
+    elemento.draggableInstance = this;
 }
 
-function mousemoveI(event){
+Draggable.prototype.mousemoveI = function(event) {
     var diffX = event.x - this.posX;
     var diffY = event.y - this.posY;
     this.elemento.style.top = (this.top + diffY) + "px";
     this.elemento.style.left = (this.left + diffX) + "px";
 }
+
 Draggable.prototype.onMouseDown = function(event) {
-    this.posX = event.x;
-    this.posY = event.y;
-    this.elemento.classList.add("dragging");
-    window.addEventListener("mousemove", this.refMouseMove);
-    window.addEventListener("mouseup", this.refMouseUp);
-}
-
-Draggable.prototype.onMouseMove = function(event) {
-    
-    //if(event.target.classList.contains('min-class')){
-    //    return ;
-   // }
-    var diffX = event.x - this.posX;
-    var diffY = event.y - this.posY;
-    this.elemento.style.top = (this.top + diffY) + "px";
-    this.elemento.style.left = (this.left + diffX) + "px";
+    if (!this.elemento.classList.contains("minimizado")) {
+        this.posX = event.x;
+        this.posY = event.y;
+        this.elemento.classList.add("dragging");
+        window.addEventListener("mousemove", this.refMouseMove);
+        window.addEventListener("mouseup", this.refMouseUp);
+    }
 }
 
 Draggable.prototype.onMouseUp = function(event) {
@@ -133,6 +127,7 @@ Draggable.prototype.onMouseUp = function(event) {
     window.removeEventListener("mousemove", this.refMouseMove);
     window.removeEventListener("mouseup", this.refMouseUp);
 }
+
 
 var draggables = document.querySelectorAll(".postItClass");
 [].forEach.call(draggables, function(draggable) {
@@ -168,22 +163,20 @@ function data() {
     return dataOut
 }
 
-function minimizar(botao){
-
+function minimizar(botao) {
     let top = botao.parentElement;
     let post = top.parentElement;
-    post.style.position = "relative";
-    post.style.top = 0;
-    post.style.left = 0;
-    console.log("work")
-    post.className = "minimizado";
 
-    let notaSave = post;
+    post.style.position = "relative";
+    post.style.top = "0px";
+    post.style.left = "0px";
+
+    post.classList.add("minimizado");
+
     let container = document.getElementById("notaContainerId");
     container.removeChild(post);
-    let stand = document.getElementById("standBy");
-    stand.appendChild(notaSave);
 
-    console.log(notaSave);
-    notaSave.removeEventListener('mousemove',mousemoveI);
+    let stand = document.getElementById("standBy");
+    stand.appendChild(post);
+
 }
