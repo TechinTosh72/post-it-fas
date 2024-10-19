@@ -1,5 +1,8 @@
 var numId = 0;
 var numCor = 0;
+var contAtivo = 0;
+var contMin = 0;
+var contTotal = contAtivo + contMin;
 
 function lerNota() {
     var entrada = document.getElementById("inputNota").value;
@@ -10,8 +13,13 @@ function criarNota(event) {
     numId += 1;
     event.preventDefault();
     const notaContainer = document.getElementById("notaContainerId");
-
     const postIt = document.createElement("div");
+    var comparador = 0;
+    contAtivo++
+    contTotal = contAtivo + contMin;
+    console.log(contMin)
+    console.log(contAtivo)
+    console.log(contTotal)
     postIt.className = "postItClass";
     postIt.id = "postItId"+numId;
     postIt.style.cursor = "move";
@@ -29,13 +37,31 @@ function criarNota(event) {
     botaoMinimizar.className = "botaoMinimizarClass";
     const textoMinimizar = document.createTextNode("-");
     botaoMinimizar.addEventListener("click", function() {
-        minimizar(botaoMinimizar);
+        comparador = minimizar(botaoMinimizar);
     });
 
     
     const botaoFechar = document.createElement("button");
     botaoFechar.className = "botaoFecharClass";
     const textoFechar = document.createTextNode("X");
+    botaoFechar.addEventListener("click", function(){
+        if(comparador == 1){
+            contMin-- 
+            contTotal = contAtivo + contMin;    
+            console.log(contMin)
+            console.log(contAtivo)
+            console.log(contTotal)
+            postIt.remove();
+        }
+        if(comparador == 0){
+            contAtivo--  
+            contTotal = contAtivo + contMin;
+            console.log(contMin)
+            console.log(contAtivo)
+            console.log(contTotal)
+            postIt.remove();
+        }
+    });
     
     const datahor = document.createElement("p")
     datahor.id = "idDatahor"+numId;
@@ -166,12 +192,20 @@ function data() {
 function minimizar(botao) {
     let top = botao.parentElement;
     let post = top.parentElement;
+    var estado = 1
+    contMin++
+    contAtivo--
+    contTotal = contAtivo + contMin;
+    console.log(contMin)
+    console.log(contAtivo)
+    console.log(contTotal)
 
     post.style.position = "relative";
     post.style.top = "0px";
     post.style.left = "0px";
 
     post.classList.add("minimizado");
+    
 
     let container = document.getElementById("notaContainerId");
     container.removeChild(post);
@@ -184,10 +218,21 @@ function minimizar(botao) {
     botaoRestaurar.innerHTML = "Restaurar";
     botaoRestaurar.onclick = function() {
         post.classList.remove("minimizado");
+        estado = 0
         stand.removeChild(post);
         container.appendChild(post);
         post.removeChild(botaoRestaurar);
+        contMin--
+        contAtivo++
+        console.log(contMin)
+        console.log(contAtivo)
+        console.log(contTotal)
     };
+
+    post.appendChild(botaoRestaurar);
+    return estado;
+}
+
 
     post.appendChild(botaoRestaurar);
 }
