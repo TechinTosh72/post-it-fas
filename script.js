@@ -235,5 +235,10 @@ function minimizar(botao) {
 
 
     post.appendChild(botaoRestaurar);
+
+function atualizarContadores() {
+        document.getElementById("contadorAtivo").innerHTML = "Post-its Ativos: " + contAtivo;
+        document.getElementById("contadorMinizado").innerHTML = "Post-its Minimizados: " + contMin;
+        document.getElementById("contadorTotal").innerHTML = "Total de Post-its: " + contTotal;
 }
 
